@@ -6,10 +6,10 @@
     <data>
 <variable
     name="item"
-    type="com.example.marvelapp.data.model.Character" />
+    type="com.example.marvelapp.data.response.Character" />
    <variable
        name="listener"
-       type="com.example.marvelapp.ui.base.BaseInteractionListener"/> />
+       type="com.example.marvelapp.ui.home.CharacterInteractionListener"/> />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -21,12 +21,14 @@
             android:id="@+id/item"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:onClick="@{()-> listener.onClickCharacter(item)}"
         >
 
             <ImageView
                 android:id="@+id/image_item"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                app:imageurl="@{item.thumbnail.path}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -10,30 +10,6 @@
         android:name="com.example.marvelapp.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_detailsCharacterFragment"
-            app:destination="@id/detailsCharacterFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/comicsFragment"
-        android:name="com.example.marvelapp.ui.comics.ComicsFragment"
-        android:label="ComicsFragment"
-        tools:layout="@layout/fragment_comics"/>
-    <fragment
-        android:id="@+id/detailsCharacterFragment"
-        android:name="com.example.marvelapp.ui.characterDetails.DetailsCharacterFragment"
-        android:label="DetailsCharacterFragment"
-        tools:layout="@layout/fragment_character_details">
-        <action
-            android:id="@+id/action_detailsCharacterFragment_to_seriesFragment"
-            app:destination="@id/seriesFragment" />
-        <action
-            android:id="@+id/action_detailsCharacterFragment_to_comicsFragment"
-            app:destination="@id/comicsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/seriesFragment"
-        android:name="com.example.marvelapp.ui.series.SeriesFragment"
-        android:label="SeriesFragment"
-        tools:layout="@layout/fragment_series"/>
+
 </navigation>
