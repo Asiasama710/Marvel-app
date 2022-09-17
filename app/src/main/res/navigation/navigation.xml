@@ -10,6 +10,17 @@
         android:name="com.example.marvelapp.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailsCharacterFragment"
+            app:destination="@id/detailsCharacterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsCharacterFragment"
+        android:name="com.example.marvelapp.ui.characterDetails.DetailsCharacterFragment"
+        android:label="DetailsCharacterFragment" >
+        <argument
+            android:name="characterid"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

@@ -11,7 +11,7 @@ import com.example.marvelapp.ui.home.CharacterInteractionListener
 
 abstract class BaseAdapter<T>(
     var items: List<T>,
-    private var listener: CharacterInteractionListener
+    private var listener: BaseInteractionListener
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 
 

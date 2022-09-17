@@ -14,8 +14,6 @@ data class ComicsResponse(
     val copyright: String,
     @SerializedName("data")
     val `data`: Data,
-    @SerializedName("etag")
-    val etag: String,
     @SerializedName("status")
     val status: String
 )

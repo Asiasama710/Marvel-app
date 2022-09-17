@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            app:items="@{viewModel.listOfCharacter}"
+            app:items="@{viewModel.request.toData().data.character}"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
             app:showWhenSuccess="@{viewModel.request}"
             app:spanCount="2"
             tools:listitem="@layout/item_character" />
-<!--        app:items="@{viewModel.request.toData().data.character}"-->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,7 +3,7 @@ package com.example.marvelapp.ui.home
 
 import com.example.marvelapp.R
 import com.example.marvelapp.ui.base.BaseAdapter
-import com.example.marvelapp.data.response.Character
+import com.example.marvelapp.data.response.characterResponse.Character
 
 
 class CharacterAdapter(items: List<Character>, itemListener: CharacterInteractionListener) :

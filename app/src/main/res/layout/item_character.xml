@@ -6,7 +6,7 @@
     <data>
 <variable
     name="item"
-    type="com.example.marvelapp.data.response.Character" />
+    type="com.example.marvelapp.data.response.characterResponse.Character" />
    <variable
        name="listener"
        type="com.example.marvelapp.ui.home.CharacterInteractionListener"/> />
@@ -28,7 +28,7 @@
                 android:id="@+id/image_item"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                app:imageurl="@{item.thumbnail.path}"
+                app:imageurl="@{item.thumbnail.path + `.`+item.thumbnail.extension}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
