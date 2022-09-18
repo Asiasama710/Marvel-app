@@ -18,7 +18,7 @@
             android:layout_height="347dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
-          app:showWhenLoading="@{viewModel.request}"
+            app:showWhenLoading="@{viewModel.request}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

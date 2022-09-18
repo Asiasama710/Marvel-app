@@ -1,9 +1,9 @@
-package com.example.marvelapp.data.response.comics
+package com.example.marvelapp.data.response.seriesResponse
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ComicsResponse(
+data class SeriesResponse(
     @SerializedName("attributionHTML")
     val attributionHTML: String,
     @SerializedName("attributionText")

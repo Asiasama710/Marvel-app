@@ -1,10 +1,10 @@
-package com.example.marvelapp.data.response.comics
+package com.example.marvelapp.data.response.seriesResponse
 
 
 import com.example.marvelapp.data.response.characterResponse.Character
 import com.google.gson.annotations.SerializedName
 
-data class CharacterData(
+data class CharactersData(
     @SerializedName("available")
     val available: Int,
     @SerializedName("collectionURI")

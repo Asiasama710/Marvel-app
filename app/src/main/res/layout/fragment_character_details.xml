@@ -7,9 +7,9 @@
    <variable
         name="viewModel"
         type="com.example.marvelapp.ui.characterDetails.DetailsCharacterViewModel" />
-   <variable
-        name="character"
-        type="com.example.marvelapp.data.response.characterResponse.Character" />
+        <variable
+            name="listener"
+            type="com.example.marvelapp.ui.characterDetails.DetailsInteractionListener"/> />
     </data>
 
 
@@ -93,6 +93,7 @@
                     android:layout_margin="@dimen/dim8"
                     android:background="@drawable/button_background"
                     android:text="Comics"
+                    android:onClick="@{()-> viewModel.onClickComics(viewModel.characterInfo)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/more_large_text_size"
@@ -106,6 +107,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="@dimen/dim8"
                     android:background="@drawable/button_background"
+                    android:onClick="@{()-> viewModel.onClickSeries(viewModel.characterInfo)}"
                     android:text="Series"
                     android:textAllCaps="false"
                     android:textColor="@color/white"

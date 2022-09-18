@@ -17,7 +17,30 @@
     <fragment
         android:id="@+id/detailsCharacterFragment"
         android:name="com.example.marvelapp.ui.characterDetails.DetailsCharacterFragment"
-        android:label="DetailsCharacterFragment" >
+        android:label="DetailsCharacterFragment"
+        tools:layout="@layout/fragment_character_details">
+        <argument
+            android:name="characterid"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_detailsCharacterFragment_to_comicsFragment"
+            app:destination="@id/comicsFragment" />
+        <action
+            android:id="@+id/action_detailsCharacterFragment_to_seriesFragment"
+            app:destination="@id/seriesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicsFragment"
+        android:name="com.example.marvelapp.ui.comics.ComicsFragment"
+        android:label="ComicsFragment" >
+        <argument
+            android:name="characterid"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/seriesFragment"
+        android:name="com.example.marvelapp.ui.series.SeriesFragment"
+        android:label="SeriesFragment" >
         <argument
             android:name="characterid"
             app:argType="integer" />

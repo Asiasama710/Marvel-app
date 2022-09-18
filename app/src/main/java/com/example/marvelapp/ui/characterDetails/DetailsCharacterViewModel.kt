@@ -9,7 +9,9 @@ import com.example.marvelapp.data.response.characterResponse.Character
 import com.example.marvelapp.data.response.characterResponse.CharacterResponse
 import com.example.marvelapp.data.service.WebRequest
 import com.example.marvelapp.ui.base.BaseViewModel
+import com.example.marvelapp.utilities.Event
 import com.example.marvelapp.utilities.observeOnMainThread
+import com.example.marvelapp.utilities.postEvent
 
 class DetailsCharacterViewModel : BaseViewModel(){
 
@@ -20,6 +22,13 @@ class DetailsCharacterViewModel : BaseViewModel(){
 
     private val _characterInfo = MutableLiveData<Character>()
     val characterInfo: LiveData<Character> get() = _characterInfo
+
+    private val _navigateToComicsList = MutableLiveData<Event<Int?>>()
+    val navigateToComicsList: LiveData<Event<Int?>> = _navigateToComicsList
+
+    private val _navigateToSeriesList = MutableLiveData<Event<Int?>>()
+    val navigateToSeriesList: LiveData<Event<Int?>> = _navigateToSeriesList
+
 
     fun getCharacterId(characterId: Int){
         repository.getCharacterById(characterId).run {
@@ -32,7 +41,7 @@ class DetailsCharacterViewModel : BaseViewModel(){
         if (state is State.Success) {
             _request.postValue(state)
             _characterInfo.postValue(state.toData()?.data?.character?.first())
-            Log.e("ASIATEST", _characterInfo.postValue(state.toData()?.data?.character?.first()).toString())
+            Log.e("ASIATESTtt", _characterInfo.postValue(state.toData()?.data?.character?.first()).toString())
         }
         else {
             _request.postValue(state)
@@ -43,4 +52,15 @@ class DetailsCharacterViewModel : BaseViewModel(){
         _request.postValue(State.Error(requireNotNull(throwable.message)))
     }
 
+
+    fun onClickComics(character: Character) {
+        Log.v("clicking", _navigateToComicsList.value.toString())
+        _navigateToComicsList.postEvent(character.id)
+        Log.v("clicking", _navigateToComicsList.value.toString())
+
+    }
+
+     fun onClickSeries(character: Character) {
+         _navigateToSeriesList.postEvent(character.id)
+    }
 }
