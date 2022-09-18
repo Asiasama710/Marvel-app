@@ -9,15 +9,11 @@ data class Series(
     @SerializedName("comics")
     val comics: ComicsData,
     @SerializedName("description")
-    val description: Any,
+    val description: String,
     @SerializedName("endYear")
     val endYear: Int,
     @SerializedName("id")
     val id: Int,
-    @SerializedName("next")
-    val next: Any,
-    @SerializedName("previous")
-    val previous: Any,
     @SerializedName("rating")
     val rating: String,
     @SerializedName("startYear")

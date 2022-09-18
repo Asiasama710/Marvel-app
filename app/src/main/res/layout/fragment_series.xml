@@ -12,14 +12,41 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:background="@color/background_color">
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/nointernet"
+            android:layout_width="218dp"
+            android:layout_height="347dp"
+            android:visibility="invisible"
+            app:showWhenError="@{viewModel.request}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/nointernet" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="218dp"
+            android:layout_height="347dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:showWhenLoading="@{viewModel.request}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/Space2x"
+            android:padding="@dimen/Space2x"
             app:items="@{viewModel.request.toData().data.series}"
             app:showWhenSuccess="@{viewModel.request}"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"

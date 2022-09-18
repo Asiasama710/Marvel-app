@@ -9,26 +9,41 @@
     type="com.example.marvelapp.data.response.characterResponse.Character" />
    <variable
        name="listener"
-       type="com.example.marvelapp.ui.home.CharacterInteractionListener"/> />
+       type="com.example.marvelapp.ui.home.CharacterInteractionListener"/>
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:shadowRadius="24"
+        android:shadowDy="24"
+        android:shadowDx="0"
+        android:shadowColor="@color/black"
+        app:cardCornerRadius="@dimen/larg_radius"
+        android:layout_margin="@dimen/Space2x">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:onClick="@{()-> listener.onClickCharacter(item)}"
-        >
+            android:layout_height="200dp"
+            android:onClick="@{()-> listener.onClickCharacter(item)}">
+
+
 
             <ImageView
                 android:id="@+id/image_item"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 app:imageurl="@{item.thumbnail.path + `.`+item.thumbnail.extension}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/background"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,16 +51,19 @@
             <TextView
                 android:id="@+id/name_item"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:paddingHorizontal="@dimen/dim8"
+                android:paddingBottom="@dimen/Space3x"
                 android:text="@{item.name}"
-                tools:text="name of character"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/medum_text_size"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_item" />
+                tools:text="@string/name_character_" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

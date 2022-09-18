@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.BR
-import com.example.marvelapp.ui.home.CharacterInteractionListener
 
 
 abstract class BaseAdapter<T>(

@@ -8,31 +8,49 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.marvelapp.ui.home.HomeFragment"
-        android:label="HomeFragment"
+        android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailsCharacterFragment"
-            app:destination="@id/detailsCharacterFragment" />
+            app:destination="@id/Details"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailsCharacterFragment"
+        android:id="@+id/Details"
         android:name="com.example.marvelapp.ui.characterDetails.DetailsCharacterFragment"
-        android:label="DetailsCharacterFragment"
+        android:label="Details"
         tools:layout="@layout/fragment_character_details">
         <argument
             android:name="characterid"
             app:argType="integer" />
         <action
             android:id="@+id/action_detailsCharacterFragment_to_comicsFragment"
-            app:destination="@id/comicsFragment" />
+            app:destination="@id/comicsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/Details"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_detailsCharacterFragment_to_seriesFragment"
-            app:destination="@id/seriesFragment" />
+            app:destination="@id/seriesFragment"
+            app:launchSingleTop="true"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/Details"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/comicsFragment"
         android:name="com.example.marvelapp.ui.comics.ComicsFragment"
-        android:label="ComicsFragment" >
+        android:label="Comics" >
         <argument
             android:name="characterid"
             app:argType="integer" />
@@ -40,7 +58,7 @@
     <fragment
         android:id="@+id/seriesFragment"
         android:name="com.example.marvelapp.ui.series.SeriesFragment"
-        android:label="SeriesFragment" >
+        android:label="Series" >
         <argument
             android:name="characterid"
             app:argType="integer" />

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ComicsData(
     @SerializedName("available")
-    val available: Int,
+    val available: String,
     @SerializedName("collectionURI")
     val collectionURI: String,
     @SerializedName("items")

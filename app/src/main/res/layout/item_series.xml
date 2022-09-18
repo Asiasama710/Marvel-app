@@ -9,18 +9,18 @@
             type="com.example.marvelapp.data.response.seriesResponse.Series" />
         <variable
             name="listener"
-            type="com.example.marvelapp.ui.base.BaseInteractionListener"/> />
+            type="com.example.marvelapp.ui.base.BaseInteractionListener"/>
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="@dimen/Space2x">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item"
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/image_item"
                 android:layout_width="match_parent"
@@ -33,12 +33,13 @@
             <TextView
                 android:id="@+id/name_item"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@{item.title}"
-                tools:text="series"
+                tools:text="@string/series"
+                android:padding="@dimen/dim8"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/medum_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

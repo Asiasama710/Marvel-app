@@ -1,7 +1,6 @@
 package com.example.marvelapp.utilities
 
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
