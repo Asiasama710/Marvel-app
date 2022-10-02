@@ -15,10 +15,9 @@ abstract class BaseFragment<VDB : ViewDataBinding> : Fragment() {
     abstract val layoutIdFragment: Int
     abstract val viewModel: ViewModel
 
-    abstract fun setup()
+
     private lateinit var _binding: VDB
-    protected val binding: VDB
-        get() = _binding
+    protected val binding: VDB get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,9 +32,6 @@ abstract class BaseFragment<VDB : ViewDataBinding> : Fragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setup()
-    }
+
 
 }

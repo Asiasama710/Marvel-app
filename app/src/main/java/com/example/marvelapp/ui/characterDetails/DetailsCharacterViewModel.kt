@@ -4,19 +4,21 @@ package com.example.marvelapp.ui.characterDetails
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvelapp.data.State
-import com.example.marvelapp.data.repository.MarvelRepositoryImp
+import com.example.marvelapp.data.repository.MarvelRepository
 import com.example.marvelapp.data.response.characterResponse.Character
 import com.example.marvelapp.data.response.characterResponse.CharacterResponse
-import com.example.marvelapp.data.service.WebRequest
 import com.example.marvelapp.ui.base.BaseViewModel
 import com.example.marvelapp.utilities.Event
 import com.example.marvelapp.utilities.add
 import com.example.marvelapp.utilities.observeOnMainThread
 import com.example.marvelapp.utilities.postEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+@HiltViewModel
+class DetailsCharacterViewModel @Inject constructor(
+    private val repository : MarvelRepository
+): BaseViewModel(){
 
-class DetailsCharacterViewModel : BaseViewModel(){
-
-    private val repository = MarvelRepositoryImp(WebRequest().apiService)
 
     private val _request = MutableLiveData<State<CharacterResponse?>>(State.Loading)
     val request: LiveData<State<CharacterResponse?>> get() = _request

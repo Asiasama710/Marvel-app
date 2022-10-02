@@ -7,18 +7,26 @@ import com.example.marvelapp.R
 import com.example.marvelapp.databinding.FragmentCharacterDetailsBinding
 import com.example.marvelapp.ui.base.BaseFragment
 import com.example.marvelapp.utilities.observeEvent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsCharacterFragment : BaseFragment<FragmentCharacterDetailsBinding>() {
-    override val layoutIdFragment = R.layout.fragment_character_details
-    override val viewModel: DetailsCharacterViewModel by viewModels ()
 
     private val args :DetailsCharacterFragmentArgs by navArgs()
 
-    override fun setup() {
+    override val layoutIdFragment = R.layout.fragment_character_details
+    override val viewModel: DetailsCharacterViewModel by viewModels ()
+
+
+
+
+    override fun onStart() {
+        super.onStart()
         viewModel.getCharacterId(args.characterid)
         goToComics()
         goToSeries()
     }
+
 
     private fun goToComics() {
         viewModel.apply {

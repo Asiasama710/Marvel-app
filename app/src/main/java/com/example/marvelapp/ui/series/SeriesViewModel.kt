@@ -4,15 +4,19 @@ package com.example.marvelapp.ui.series
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvelapp.data.State
-import com.example.marvelapp.data.repository.MarvelRepositoryImp
+import com.example.marvelapp.data.repository.MarvelRepository
 import com.example.marvelapp.data.response.seriesResponse.SeriesResponse
-import com.example.marvelapp.data.service.WebRequest
 import com.example.marvelapp.ui.base.BaseInteractionListener
 import com.example.marvelapp.ui.base.BaseViewModel
 import com.example.marvelapp.utilities.observeOnMainThread
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SeriesViewModel: BaseViewModel(),BaseInteractionListener{
-    private val repository = MarvelRepositoryImp(WebRequest().apiService)
+@HiltViewModel
+class SeriesViewModel@Inject constructor(
+    private val repository : MarvelRepository
+): BaseViewModel(),BaseInteractionListener{
+
 
     private val _request = MutableLiveData<State<SeriesResponse?>>(State.Loading)
     val request: LiveData<State<SeriesResponse?>> get() = _request

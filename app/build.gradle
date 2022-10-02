@@ -4,6 +4,8 @@ plugins {
     id "org.jetbrains.kotlin.kapt"
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-android-extensions'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 
 }
 
@@ -66,4 +68,11 @@ dependencies {
     def nav_version = "2.5.1"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // hilt
+    implementation 'com.google.dagger:hilt-android:2.44'
+    kapt 'com.google.dagger:hilt-compiler:2.44'
+  implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+
 }

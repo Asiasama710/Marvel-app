@@ -2,22 +2,26 @@ package com.example.marvelapp.ui.home
 
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.marvelapp.data.State
+import com.example.marvelapp.data.repository.MarvelRepository
 import com.example.marvelapp.data.response.characterResponse.CharacterResponse
-import com.example.marvelapp.data.repository.MarvelRepositoryImp
-import com.example.marvelapp.data.service.WebRequest
 import com.example.marvelapp.ui.base.BaseViewModel
 import com.example.marvelapp.utilities.observeOnMainThread
 import com.example.marvelapp.data.response.characterResponse.Character
 import com.example.marvelapp.utilities.Event
 import com.example.marvelapp.utilities.add
 import com.example.marvelapp.utilities.postEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repository : MarvelRepository
+): BaseViewModel(),CharacterInteractionListener {
 
-class HomeViewModel: BaseViewModel(),CharacterInteractionListener {
-    private val repository = MarvelRepositoryImp(WebRequest().apiService)
 
     private val _request = MutableLiveData<State<CharacterResponse?>>(State.Loading)
     val request: LiveData<State<CharacterResponse?>> get() = _request
@@ -49,6 +53,8 @@ class HomeViewModel: BaseViewModel(),CharacterInteractionListener {
     }
 
     override fun onClickCharacter(character: Character) {
+        Log.e("AsiaMMM", character.id.toString())
+        Log.e("AsiaMMM", character.name.toString())
         _navigateToDetails.postEvent(character.id)
 
     }

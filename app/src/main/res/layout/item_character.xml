@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="item"
-    type="com.example.marvelapp.data.response.characterResponse.Character" />
-   <variable
-       name="listener"
-       type="com.example.marvelapp.ui.home.CharacterInteractionListener"/>
+        <variable
+            name="item"
+            type="com.example.marvelapp.data.response.characterResponse.Character" />
+        <variable
+            name="listener"
+            type="com.example.marvelapp.ui.home.CharacterInteractionListener"/>
     </data>
 
     <androidx.cardview.widget.CardView
@@ -26,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:onClick="@{()-> listener.onClickCharacter(item)}">
-
 
 
             <ImageView
