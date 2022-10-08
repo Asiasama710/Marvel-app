@@ -15,16 +15,16 @@ class MarvelRepositoryImp  @Inject constructor(
     ):MarvelRepository {
 
 
-    override fun getCharacterList(): Single<State<CharacterResponse>> =
+    override fun getCharacterList(): Single<CharacterResponse> =
          stateWrapper.wrapResponse( marvelApiService.getCharactersList())
 
-    override fun getCharacterById(characterId:Int): Single<State<CharacterResponse>> =
+    override fun getCharacterById(characterId:Int): Single<CharacterResponse> =
         stateWrapper.wrapResponse( marvelApiService.getCharacterById(characterId))
 
-    override fun getComicsListByCharacterId(characterId: Int): Single<State<ComicsResponse>> =
+    override fun getComicsListByCharacterId(characterId: Int): Single<ComicsResponse> =
         stateWrapper.wrapResponse(marvelApiService.getComicsListByCharacterId(characterId))
 
-    override fun getSeriesListByCharacterId(characterId: Int): Single<State<SeriesResponse>> =
+    override fun getSeriesListByCharacterId(characterId: Int): Single<SeriesResponse> =
         stateWrapper.wrapResponse(marvelApiService.getSeriesListByCharacterId(characterId))
 
 

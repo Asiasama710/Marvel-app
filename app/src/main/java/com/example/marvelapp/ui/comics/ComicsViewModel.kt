@@ -19,26 +19,22 @@ class ComicsViewModel @Inject constructor(
 ): BaseViewModel() ,BaseInteractionListener {
 
 
-    private val _request = MutableLiveData<State<ComicsResponse?>>(State.Loading)
-    val request: LiveData<State<ComicsResponse?>> get() = _request
+    private val _request = MutableLiveData<ComicsResponse?>()
+    val request: LiveData<ComicsResponse?> get() = _request
 
 
 
     fun getCharacterId(characterId: Int){
         repository.getComicsListByCharacterId(characterId).run {
             observeOnMainThread()
-            subscribe(::onGetComicsListSuccess , ::onGetComicsListError)
+            subscribe(::onGetComicsListSuccess )
         }.add(compositeDisposable)
     }
 
-    private fun onGetComicsListSuccess(state: State<ComicsResponse>) {
-        if (state is State.Success)
+    private fun onGetComicsListSuccess(state: ComicsResponse) {
             _request.postValue(state)
     }
 
-    private fun onGetComicsListError(throwable: Throwable) {
-        _request.postValue(State.Error(requireNotNull(throwable.message)))
-    }
 
 
 }

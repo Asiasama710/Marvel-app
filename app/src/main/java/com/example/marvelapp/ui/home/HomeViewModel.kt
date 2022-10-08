@@ -23,8 +23,8 @@ class HomeViewModel @Inject constructor(
 ): BaseViewModel(),CharacterInteractionListener {
 
 
-    private val _request = MutableLiveData<State<CharacterResponse?>>(State.Loading)
-    val request: LiveData<State<CharacterResponse?>> get() = _request
+    private val _request = MutableLiveData<CharacterResponse?>()
+    val request: LiveData<CharacterResponse?> get() = _request
 
 
     private val _navigateToDetails = MutableLiveData<Event<Int?>>()
@@ -37,19 +37,13 @@ class HomeViewModel @Inject constructor(
     private fun getAllCharacter() {
         repository.getCharacterList().run {
             observeOnMainThread()
-            subscribe(::onGetCharacterSuccess, ::onGetCharacterError)
+            subscribe(::onGetCharacterSuccess)
         }.add(compositeDisposable)
 
     }
 
-    private fun onGetCharacterSuccess(state: State<CharacterResponse>) {
-        if (state is State.Success) {
-            _request.postValue(state)
-        }
-    }
-
-    private fun onGetCharacterError(throwable: Throwable) {
-        _request.postValue(State.Error(requireNotNull(throwable.message)))
+    private fun onGetCharacterSuccess(state: CharacterResponse) {
+         _request.postValue(state)
     }
 
     override fun onClickCharacter(character: Character) {

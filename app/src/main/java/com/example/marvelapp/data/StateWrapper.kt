@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 
 class StateWrapper {
-    fun <T> wrapResponse(response: Single<Response<T>>): Single<State<T>> {
+    fun <T> wrapResponse(response: Single<Response<T>>): Single<T> {
         return response.map {
-            if (it.isSuccessful) {
-                State.Success(it.body())
+            (if (it.isSuccessful) {
+                it.body()
             } else {
-                State.Error(it.message())
-            }
+                it.message()
+            }) as T
         }
     }
 }

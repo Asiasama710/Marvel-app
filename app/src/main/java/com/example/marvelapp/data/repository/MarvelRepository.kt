@@ -8,9 +8,9 @@ import io.reactivex.rxjava3.core.Single
 
 
 interface MarvelRepository {
-    fun getCharacterList():  Single<State<CharacterResponse>>
-    fun getCharacterById(characterId:Int): Single<State<CharacterResponse>>
-    fun getComicsListByCharacterId(characterId:Int):  Single<State<ComicsResponse>>
-    fun getSeriesListByCharacterId(characterId:Int):  Single<State<SeriesResponse>>
+    fun getCharacterList():  Single<CharacterResponse>
+    fun getCharacterById(characterId:Int): Single<CharacterResponse>
+    fun getComicsListByCharacterId(characterId:Int):  Single<ComicsResponse>
+    fun getSeriesListByCharacterId(characterId:Int):  Single<SeriesResponse>
 
 }

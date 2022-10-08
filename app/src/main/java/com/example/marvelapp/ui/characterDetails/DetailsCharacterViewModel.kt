@@ -20,8 +20,8 @@ class DetailsCharacterViewModel @Inject constructor(
 ): BaseViewModel(){
 
 
-    private val _request = MutableLiveData<State<CharacterResponse?>>(State.Loading)
-    val request: LiveData<State<CharacterResponse?>> get() = _request
+    private val _request = MutableLiveData<CharacterResponse?>()
+    val request: LiveData<CharacterResponse?> get() = _request
 
     private val _characterInfo = MutableLiveData<Character>()
     val characterInfo: LiveData<Character> get() = _characterInfo
@@ -36,26 +36,22 @@ class DetailsCharacterViewModel @Inject constructor(
     fun getCharacterId(characterId: Int){
         repository.getCharacterById(characterId).run {
             observeOnMainThread()
-            subscribe(::onGetCharacterIdSuccess , ::onGetCharacterIdError)
+            subscribe(::onGetCharacterIdSuccess )
         }.add(compositeDisposable)
     }
 
-    private fun onGetCharacterIdSuccess(state: State<CharacterResponse>) {
-        if (state is State.Success) {
+    private fun onGetCharacterIdSuccess(state: CharacterResponse) {
             _request.postValue(state)
-            _characterInfo.postValue(state.toData()?.data?.character?.first())
+            _characterInfo.postValue(state.data.character.first())
         }
-    }
 
-    private fun onGetCharacterIdError(throwable: Throwable) {
-        _request.postValue(State.Error(requireNotNull(throwable.message)))
-    }
+
 
     fun onClickComics(character: Character) {
         _navigateToComicsList.postEvent(character.id)
     }
 
-     fun onClickSeries(character: Character) {
+    fun onClickSeries(character: Character) {
          _navigateToSeriesList.postEvent(character.id)
     }
 }

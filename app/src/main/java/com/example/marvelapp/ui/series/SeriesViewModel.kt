@@ -18,25 +18,19 @@ class SeriesViewModel@Inject constructor(
 ): BaseViewModel(),BaseInteractionListener{
 
 
-    private val _request = MutableLiveData<State<SeriesResponse?>>(State.Loading)
-    val request: LiveData<State<SeriesResponse?>> get() = _request
+    private val _request = MutableLiveData<SeriesResponse?>()
+    val request: LiveData<SeriesResponse?> get() = _request
 
 
     fun getCharacterId(characterId: Int){
         repository.getSeriesListByCharacterId(characterId).run {
             observeOnMainThread()
-            subscribe(::onGetSeriesListSuccess , ::onGetSeriesListError)
+            subscribe(::onGetSeriesListSuccess )
         }
     }
 
-    private fun onGetSeriesListSuccess(state: State<SeriesResponse>) {
-        if (state is State.Success) {
+    private fun onGetSeriesListSuccess(state: SeriesResponse) {
             _request.postValue(state)
-        }
     }
 
-    private fun onGetSeriesListError(throwable: Throwable) {
-        _request.postValue(State.Error(requireNotNull(throwable.message)))
-
-    }
 }
