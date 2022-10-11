@@ -16,14 +16,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-  //  okHttpClient: OkHttpClient,
+
     @Singleton
     @Provides
     fun provideMoviesService(gsonConverterFactory: GsonConverterFactory):MarvelApiService{
         val retrofit = Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(gsonConverterFactory)
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
           //  .client(okHttpClient)
             .build()
         return  retrofit.create(MarvelApiService::class.java)

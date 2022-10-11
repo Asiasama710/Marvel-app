@@ -37,9 +37,7 @@ class HomeFragment() : BaseFragment<FragmentHomeBinding>() {
                   ?.navigate(HomeFragmentDirections.actionHomeFragmentToDetailsCharacterFragment(it))
                 }
             }
-
         }
-
     }
 
 

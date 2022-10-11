@@ -3,6 +3,7 @@ package com.example.marvelapp.ui.characterDetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.marvelapp.data.State
 import com.example.marvelapp.data.repository.MarvelRepository
 import com.example.marvelapp.data.response.characterResponse.Character
@@ -13,14 +14,17 @@ import com.example.marvelapp.utilities.add
 import com.example.marvelapp.utilities.observeOnMainThread
 import com.example.marvelapp.utilities.postEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class DetailsCharacterViewModel @Inject constructor(
-    private val repository : MarvelRepository
-): BaseViewModel(){
+    private val repository: MarvelRepository
+) : BaseViewModel() {
 
 
-    private val _request = MutableLiveData<State<CharacterResponse?>>(State.Loading)
+    private val _request = MutableLiveData<State<CharacterResponse?>>()
     val request: LiveData<State<CharacterResponse?>> get() = _request
 
     private val _characterInfo = MutableLiveData<Character>()
@@ -33,29 +37,21 @@ class DetailsCharacterViewModel @Inject constructor(
     val navigateToSeriesList: LiveData<Event<Int?>> = _navigateToSeriesList
 
 
-    fun getCharacterId(characterId: Int){
-        repository.getCharacterById(characterId).run {
-            observeOnMainThread()
-            subscribe(::onGetCharacterIdSuccess , ::onGetCharacterIdError)
-        }.add(compositeDisposable)
-    }
-
-    private fun onGetCharacterIdSuccess(state: State<CharacterResponse>) {
-        if (state is State.Success) {
-            _request.postValue(state)
-            _characterInfo.postValue(state.toData()?.data?.character?.first())
+    fun getCharacterId(characterId: Int) {
+        viewModelScope.launch {
+            repository.getCharacterById(characterId).collect { state ->
+                _request.postValue(state)
+                _characterInfo.postValue(state.toData()?.data?.character?.first())
+            }
         }
     }
 
-    private fun onGetCharacterIdError(throwable: Throwable) {
-        _request.postValue(State.Error(requireNotNull(throwable.message)))
-    }
 
     fun onClickComics(character: Character) {
         _navigateToComicsList.postEvent(character.id)
     }
 
-     fun onClickSeries(character: Character) {
-         _navigateToSeriesList.postEvent(character.id)
+    fun onClickSeries(character: Character) {
+        _navigateToSeriesList.postEvent(character.id)
     }
 }
