@@ -12,7 +12,8 @@
     <dimen name="Space4x">14dp</dimen>
     <dimen name="Space5x">16dp</dimen>
     <dimen name="Space6x">18dp</dimen>
-    <dimen name="Space7x">32dp</dimen>
+    <dimen name="Space7x">24dp</dimen>
+    <dimen name="Space8x">32dp</dimen>
     <dimen name="larg_space">270dp</dimen>
 
     <dimen name="xmore_large_text_size">20sp</dimen>

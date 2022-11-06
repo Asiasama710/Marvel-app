@@ -1,11 +1,12 @@
 package com.example.marvelapp.data.service
 
 
-import com.example.marvelapp.data.response.characterResponse.CharacterResponse
-import com.example.marvelapp.data.response.comicsResponse.ComicsResponse
-import com.example.marvelapp.data.response.seriesResponse.SeriesResponse
+import com.example.marvelapp.data.response.BaseResponse
+import com.example.marvelapp.data.response.dto.CharacterDto
+import com.example.marvelapp.data.response.dto.ComicDto
+import com.example.marvelapp.data.response.dto.SeriesDto
+import com.example.marvelapp.data.response.dto.StoriesDto
 import com.example.marvelapp.utilities.Constants
-import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,34 +16,27 @@ interface MarvelApiService {
 
     @GET("characters")
     suspend fun getCharactersList(
-        @Query("ts") ts: String = Constants.timestamp,
-        @Query("apikey") apikey: String = Constants.API_KEY,
-        @Query("hash") hash: String = Constants.HASH
-    ): Response<CharacterResponse>
+    ): Response<BaseResponse<CharacterDto>>
 
     @GET("characters/{characterId}")
-    suspend fun getCharacterById(
-        @Path("characterId") characterId: Int,
-        @Query("ts") ts: String = Constants.timestamp,
-        @Query("apikey") apikey: String = Constants.API_KEY,
-        @Query("hash") hash: String = Constants.HASH
-    ): Response<CharacterResponse>
+    suspend fun getCharacterDetails(
+        @Path("characterId") characterId: Int
+    ): Response<BaseResponse<CharacterDto>>
 
     @GET("characters/{characterId}/comics")
     suspend fun getComicsListByCharacterId(
-        @Path("characterId") characterId: Int,
-        @Query("apikey") apikey: String = Constants.API_KEY,
-        @Query("ts") ts: String = Constants.timestamp,
-        @Query("hash") hash: String = Constants.HASH
-    ): Response<ComicsResponse>
+        @Path("characterId") characterId: Int
+    ): Response<BaseResponse<ComicDto>>
 
     @GET("characters/{characterId}/series")
     suspend fun getSeriesListByCharacterId(
-        @Path("characterId") characterId: Int,
-        @Query("apikey") apikey: String = Constants.API_KEY,
-        @Query("ts") ts: String = Constants.timestamp,
-        @Query("hash") hash: String = Constants.HASH
-    ): Response<SeriesResponse>
+        @Path("characterId") characterId: Int
+    ): Response<BaseResponse<SeriesDto>>
+
+    @GET("characters/{characterId}/stories")
+    suspend fun getStoriesByCharacterId(
+        @Path("characterId") characterId: Int
+    ): Response<BaseResponse<StoriesDto>>
 
 }
 

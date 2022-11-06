@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.marvelapp.ui.comics.ComicsViewModel" />
+            type="com.example.marvelapp.ui.stories.StoriesViewModel" />
 
     </data>
 
@@ -27,7 +27,6 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/no_conniction" />
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loading"
             android:layout_width="218dp"
@@ -41,22 +40,22 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            app:items="@{viewModel.request.toData().data.results}"
+            android:layout_marginBottom="@dimen/Space2x"
             android:padding="@dimen/Space2x"
+            app:items="@{viewModel.request.toData().data.results}"
             app:showWhenSuccess="@{viewModel.request}"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
-            tools:listitem="@layout/item_comics" />
+            tools:listitem="@layout/item_stories" />
 
         <androidx.constraintlayout.utils.widget.MotionButton
             android:layout_width="match_parent"

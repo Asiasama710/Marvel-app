@@ -1,5 +1,8 @@
 package com.example.marvelapp.ui.characterDetails
 
+import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -18,37 +21,49 @@ class DetailsCharacterFragment : BaseFragment<FragmentCharacterDetailsBinding>()
     override val viewModel: DetailsCharacterViewModel by viewModels ()
 
 
-
-
-    override fun onStart() {
-        super.onStart()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        handleEvents()
         viewModel.getCharacterId(args.characterid)
-        goToComics()
-        goToSeries()
     }
 
 
-    private fun goToComics() {
+    private fun handleEvents()  {
         viewModel.apply {
-            navigateToComicsList.observeEvent(this@DetailsCharacterFragment) {
-                if(it!=null){
-                    view?.findNavController()
-                        ?.navigate(DetailsCharacterFragmentDirections.actionDetailsCharacterFragmentToComicsFragment(it))
+            navigateToComicsList.observeEvent(viewLifecycleOwner) {
+                Log.i("MALT","navigat to comic ${it}")
+                navigateToComics(it)
                 }
+            navigateToSeries.observeEvent(viewLifecycleOwner) {
+                navigateToSeries(it)
+            }
+            navigateToStories.observeEvent(viewLifecycleOwner) {
+                Log.i("MALT","navigat to Storis ${it}")
+                navigateToStories(it)
             }
         }
-    }
-    private fun goToSeries() {
-        viewModel.apply {
-            navigateToSeriesList.observeEvent(this@DetailsCharacterFragment) {
-                if(it!=null){
-                    view?.findNavController()
-                        ?.navigate(DetailsCharacterFragmentDirections.actionDetailsCharacterFragmentToSeriesFragment(it))
-                }
-            }
-        }
+
     }
 
+    private fun navigateToComics(id: Int){
+        Log.i("MALT","in details fragment comic id  ${id}")
+        requireView()
+            .findNavController()
+            .navigate(DetailsCharacterFragmentDirections.actionDetailsCharacterFragmentToComicsFragment(id))
+    }
+
+    private fun navigateToSeries(id: Int){
+        requireView()
+            .findNavController()
+            .navigate(DetailsCharacterFragmentDirections.actionDetailsCharacterFragmentToSeriesFragment(id))
+    }
+    private fun navigateToStories(id: Int){
+        Log.i("MALT","in details fragment stories id ${id}")
+        requireView()
+            .findNavController()
+            .navigate(DetailsCharacterFragmentDirections.actionDetailsCharacterFragmentToStoriesFragment(id))
+
+    }
 
 
 }

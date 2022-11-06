@@ -1,9 +1,9 @@
-package com.example.marvelapp.data.response.comicsResponse
+package com.example.marvelapp.data.response
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Image(
+data class Thumbnail(
     @SerializedName("extension")
     val extension: String,
     @SerializedName("path")

@@ -1,4 +1,5 @@
-package com.example.marvelapp.ui.comics
+package com.example.marvelapp.ui.stories
+
 
 import android.os.Bundle
 import android.util.Log
@@ -6,17 +7,15 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.marvelapp.R
-import com.example.marvelapp.databinding.FragmentComicsBinding
+import com.example.marvelapp.databinding.FragmentSeriesBinding
+import com.example.marvelapp.databinding.FragmentStoriesBinding
 import com.example.marvelapp.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ComicsFragment : BaseFragment<FragmentComicsBinding>() {
-
-    private val args: ComicsFragmentArgs by navArgs()
-
-    override val layoutIdFragment = R.layout.fragment_comics
-    override val viewModel: ComicsViewModel by viewModels()
+class StoriesFragment : BaseFragment<FragmentStoriesBinding>() {
+    override val layoutIdFragment  = R.layout.fragment_stories
+    override val viewModel: StoriesViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,9 +23,10 @@ class ComicsFragment : BaseFragment<FragmentComicsBinding>() {
         handleAdapterWithRecyclerView()
     }
 
-    private fun handleAdapterWithRecyclerView() {
-        val adapter = ComicsAdapter(mutableListOf(), viewModel)
+    private fun handleAdapterWithRecyclerView(){
+        val adapter = StoriesAdapter(mutableListOf(),viewModel)
         binding.itemRecyclerView.adapter = adapter
+
     }
 
 }

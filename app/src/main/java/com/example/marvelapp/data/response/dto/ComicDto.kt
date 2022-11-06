@@ -1,9 +1,12 @@
-package com.example.marvelapp.data.response.comicsResponse
+package com.example.marvelapp.data.response.dto
 
 
+import com.example.marvelapp.data.response.Image
+import com.example.marvelapp.data.response.Price
+import com.example.marvelapp.data.response.Thumbnail
 import com.google.gson.annotations.SerializedName
 
-data class Comic(
+data class ComicDto(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")
@@ -14,8 +17,6 @@ data class Comic(
     val description: String,
     @SerializedName("prices")
     val prices: List<Price>,
-    @SerializedName("characters")
-    val characters: CharacterData,
     @SerializedName("images")
     val images: List<Image>
 

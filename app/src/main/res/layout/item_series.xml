@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.marvelapp.data.response.seriesResponse.Series" />
+            type="com.example.marvelapp.data.response.dto.SeriesDto" />
         <variable
             name="listener"
             type="com.example.marvelapp.ui.base.BaseInteractionListener"/>
@@ -25,6 +25,8 @@
                 android:id="@+id/image_item"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                tools:src="@drawable/no_image"
+                android:scaleType="centerCrop"
                 app:imageurl="@{item.thumbnail.path + `.`+ item.thumbnail.extension}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +40,7 @@
                 android:text="@{item.title}"
                 tools:text="@string/series"
                 android:padding="@dimen/dim8"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:textSize="@dimen/medum_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

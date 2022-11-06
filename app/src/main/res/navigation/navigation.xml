@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailsCharacterFragment"
-            app:destination="@id/Details"
+            app:destination="@id/detailsCharacterFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
@@ -20,7 +20,7 @@
             app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/Details"
+        android:id="@+id/detailsCharacterFragment"
         android:name="com.example.marvelapp.ui.characterDetails.DetailsCharacterFragment"
         android:label="Details"
         tools:layout="@layout/fragment_character_details">
@@ -34,7 +34,7 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/Details"
+            app:popUpTo="@id/detailsCharacterFragment"
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_detailsCharacterFragment_to_seriesFragment"
@@ -44,13 +44,23 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/Details"
+            app:popUpTo="@id/detailsCharacterFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_detailsCharacterFragment_to_storiesFragment"
+            app:destination="@id/storiesFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/detailsCharacterFragment"
+            app:popUpToInclusive="false"/>
     </fragment>
     <fragment
         android:id="@+id/comicsFragment"
         android:name="com.example.marvelapp.ui.comics.ComicsFragment"
-        android:label="Comics" >
+        android:label="Comics"
+        tools:layout="@layout/fragment_comics">
         <argument
             android:name="characterid"
             app:argType="integer" />
@@ -58,7 +68,17 @@
     <fragment
         android:id="@+id/seriesFragment"
         android:name="com.example.marvelapp.ui.series.SeriesFragment"
-        android:label="Series" >
+        android:label="Series"
+        tools:layout="@layout/fragment_series">
+        <argument
+            android:name="characterid"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/storiesFragment"
+        android:name="com.example.marvelapp.ui.stories.StoriesFragment"
+        android:label="Stories"
+        tools:layout="@layout/fragment_stories">
         <argument
             android:name="characterid"
             app:argType="integer" />

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.marvelapp.data.response.comicsResponse.Comic" />
+            type="com.example.marvelapp.data.response.dto.ComicDto" />
         <variable
             name="listener"
             type="com.example.marvelapp.ui.base.BaseInteractionListener"/>
@@ -20,12 +20,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="220dp">
+
             <ImageView
                 android:id="@+id/image_item"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="0dp"
+                tools:src="@drawable/no_image"
+                android:scaleType="centerCrop"
                 app:imageurl="@{item.thumbnail.path + `.`+ item.thumbnail.extension}"
+                app:layout_constraintBottom_toTopOf="@+id/name_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -34,16 +38,18 @@
                 android:id="@+id/name_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:gravity="center"
-                android:text="@{item.title}"
-                tools:text="comics"
+                android:lines="2"
+                android:maxLines="2"
                 android:padding="@dimen/dim8"
-                android:textColor="@color/black"
+                android:text="@{item.title}"
+                android:textColor="@color/text_color"
                 android:textSize="@dimen/medum_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_item" />
+                tools:text="comics" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

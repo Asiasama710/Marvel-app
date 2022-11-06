@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_color">
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/nointernet"
             android:layout_width="218dp"
@@ -26,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/nointernet" />
+            app:lottie_rawRes="@raw/no_conniction" />
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loading"
             android:layout_width="218dp"
@@ -47,7 +48,7 @@
             android:orientation="vertical"
             android:layout_marginBottom="@dimen/Space2x"
             android:padding="@dimen/Space2x"
-            app:items="@{viewModel.request.toData().data.series}"
+            app:items="@{viewModel.request.toData().data.results}"
             app:showWhenSuccess="@{viewModel.request}"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,5 +57,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
             tools:listitem="@layout/item_series" />
+
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/Space5x"
+            android:layout_marginBottom="@dimen/Space5x"
+            android:textColor="@color/white"
+            android:text="@string/try_again"
+            android:onClick="@{()-> viewModel.tryLoadDataAgain()}"
+            app:showWhenError="@{viewModel.request}"
+            android:textAllCaps="false"
+            android:background="@drawable/circular_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

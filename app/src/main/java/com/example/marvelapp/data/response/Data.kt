@@ -1,9 +1,9 @@
-package com.example.marvelapp.data.response.characterResponse
+package com.example.marvelapp.data.response
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Data(
+data class Data<T>(
     @SerializedName("count")
     val count: Int,
     @SerializedName("limit")
@@ -11,7 +11,7 @@ data class Data(
     @SerializedName("offset")
     val offset: Int,
     @SerializedName("results")
-    val character: List<Character>,
+    val results: List<T>,
     @SerializedName("total")
     val total: Int
 )

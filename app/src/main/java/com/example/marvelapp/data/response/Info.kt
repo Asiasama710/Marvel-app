@@ -1,16 +1,15 @@
-package com.example.marvelapp.data.response.characterResponse
+package com.example.marvelapp.data.response
 
 
-import com.example.marvelapp.data.response.comicsResponse.Comic
 import com.google.gson.annotations.SerializedName
 
-data class ComicsData(
+data class Info<T>(
     @SerializedName("available")
     val available: String,
     @SerializedName("collectionURI")
     val collectionURI: String,
     @SerializedName("items")
-    val items: List<Comic>,
+    val items: List<T>,
     @SerializedName("returned")
     val returned: Int
 )

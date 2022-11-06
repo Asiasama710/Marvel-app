@@ -1,15 +1,17 @@
 package com.example.marvelapp.di
 
 
+import com.example.marvelapp.data.AuthInterceptor
 import com.example.marvelapp.data.service.MarvelApiService
 import com.example.marvelapp.utilities.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
@@ -19,30 +21,29 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideMoviesService(gsonConverterFactory: GsonConverterFactory):MarvelApiService{
+    fun provideMoviesService(
+        gsonConverterFactory: GsonConverterFactory,
+        okHttpClient: OkHttpClient
+    ): MarvelApiService {
         val retrofit = Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(gsonConverterFactory)
-          //  .client(okHttpClient)
+            .client(okHttpClient)
             .build()
-        return  retrofit.create(MarvelApiService::class.java)
+        return retrofit.create(MarvelApiService::class.java)
     }
 
-//    @Singleton
-//    @Provides
-//    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient{
-//        return OkHttpClient
-//            .Builder()
-//            .addInterceptor(loggingInterceptor)
-//            .build()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun provideLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-//            setLevel(HttpLoggingInterceptor.Level.BODY)
-//        }
-//
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
+        val builder = OkHttpClient()
+            .newBuilder()
+            .addInterceptor(authInterceptor)
+            .connectTimeout(1, TimeUnit.MINUTES)
+        return builder.build()
+    }
+
+
     @Singleton
     @Provides
     fun provideGson(): GsonConverterFactory = GsonConverterFactory.create()

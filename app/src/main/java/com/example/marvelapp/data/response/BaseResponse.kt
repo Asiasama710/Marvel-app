@@ -1,9 +1,9 @@
-package com.example.marvelapp.data.response.seriesResponse
+package com.example.marvelapp.data.response
 
 
 import com.google.gson.annotations.SerializedName
 
-data class SeriesResponse(
+data class BaseResponse<T>(
     @SerializedName("attributionHTML")
     val attributionHTML: String,
     @SerializedName("attributionText")
@@ -13,7 +13,7 @@ data class SeriesResponse(
     @SerializedName("copyright")
     val copyright: String,
     @SerializedName("data")
-    val `data`: Data,
+    val `data`: Data<T>,
     @SerializedName("status")
     val status: String
 )

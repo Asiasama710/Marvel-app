@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.marvelapp.data.response.dto.StoriesDto" />
+        <variable
+            name="listener"
+            type="com.example.marvelapp.ui.base.BaseInteractionListener"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/Space1x">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_item"
+                android:layout_width="140dp"
+                android:layout_height="0dp"
+                tools:src="@drawable/no_image"
+                android:scaleType="centerCrop"
+                app:imageurl="@{item.thumbnail.path + `.`+ item.thumbnail.extension}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dim8"
+                android:text="@{item.title}"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/medum_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_item"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/series" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image_item"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   android:paddingHorizontal="@dimen/dim8"
+                    android:paddingVertical="@dimen/dim4"
+                    android:text="Type :"
+                    android:textColor="@color/desc_color"
+                    android:textSize="@dimen/small_text_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dim8"
+                    android:paddingHorizontal="@dimen/dim8"
+                    android:text="Modified :"
+                    android:textColor="@color/desc_color"
+                    android:textSize="@dimen/small_text_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/dim4"
+                    android:text="@{item.type}"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/small_text_size"
+                    tools:text="@string/series" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dim8"
+                    app:modifiedDate="@{item.modified}"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/small_text_size"
+                    tools:text="@string/series" />
+
+            </LinearLayout>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -7,4 +7,7 @@
     <string name="series_">series :  </string>
     <string name="series">Series</string>
     <string name="name_character_">name of character</string>
+    <string name="stories">Stories</string>
+    <string name="describtion_fake">lblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblblb</string>
+    <string name="try_again">Try again</string>
 </resources>

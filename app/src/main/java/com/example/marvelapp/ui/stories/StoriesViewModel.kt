@@ -1,42 +1,41 @@
-package com.example.marvelapp.ui.series
+package com.example.marvelapp.ui.stories
 
 
 import androidx.lifecycle.*
 import com.example.marvelapp.data.State
 import com.example.marvelapp.data.repository.MarvelRepository
 import com.example.marvelapp.data.response.BaseResponse
-import com.example.marvelapp.data.response.dto.SeriesDto
+import com.example.marvelapp.data.response.dto.StoriesDto
 import com.example.marvelapp.ui.base.BaseInteractionListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SeriesViewModel @Inject constructor(
+class StoriesViewModel @Inject constructor(
     private val repository: MarvelRepository,
     saveStateHandle: SavedStateHandle,
 ) : ViewModel(), BaseInteractionListener {
 
 
-    private val _request = MutableLiveData<State<BaseResponse<SeriesDto>?>>()
-    val request: LiveData<State<BaseResponse<SeriesDto>?>> get() = _request
+    private val _request = MutableLiveData<State<BaseResponse<StoriesDto>?>>()
+    val request: LiveData<State<BaseResponse<StoriesDto>?>> get() = _request
 
-    private val args = SeriesFragmentArgs.fromSavedStateHandle(saveStateHandle)
+    private val args = StoriesFragmentArgs.fromSavedStateHandle(saveStateHandle)
 
     init {
-        getSeries(args.characterid)
+        getStories(args.characterid)
     }
 
-   private fun getSeries(characterId: Int) {
+    private fun getStories(characterId: Int) {
         viewModelScope.launch {
-            repository.getCharacterSeries(characterId).collect { state ->
+            repository.getCharacterStories(characterId).collect { state ->
                 _request.postValue(state)
             }
         }
     }
 
     fun tryLoadDataAgain() {
-        getSeries(args.characterid)
+        getStories(args.characterid)
     }
-
 }
